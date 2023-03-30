@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>728145948761-7b5075qom8q5h2i22cbt25n85ieck8ru.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.728145948761-7b5075qom8q5h2i22cbt25n85ieck8ru</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBmQmzvhctumDHeJ_mAb04_m360ehJ69JM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>728145948761</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.zeeed</string>
+	<key>PROJECT_ID</key>
+	<string>zeeed2-38d64</string>
+	<key>STORAGE_BUCKET</key>
+	<string>zeeed2-38d64.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:728145948761:ios:1772cc4f3f700f2d304148</string>
+	<key>DATABASE_URL</key>
+	<string>https://zeeed2-38d64-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

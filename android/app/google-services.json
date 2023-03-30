@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "728145948761",
+    "firebase_url": "https://zeeed2-38d64-default-rtdb.firebaseio.com",
+    "project_id": "zeeed2-38d64",
+    "storage_bucket": "zeeed2-38d64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728145948761:android:8ad9e910f3619973304148",
+        "android_client_info": {
+          "package_name": "com.mycompany.zeeed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728145948761-6eshodbq9rj4od2st48dmorpheqmnt4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX8BmJzK055gGzTs1ZGsypZkofkNMhSXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728145948761-6eshodbq9rj4od2st48dmorpheqmnt4u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "728145948761-7b5075qom8q5h2i22cbt25n85ieck8ru.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.zeeed"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
