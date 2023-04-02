@@ -560,7 +560,7 @@ class _GridBState extends State<GridB> {
                                         Padding(
                                           padding: EdgeInsets.all(1.0),
                                           child: Text(
-                                            "${data['time']} Hours",
+                                            "Ends at ${data['time']}",
                                             style: TextStyle(color: Colors.red),
                                           ),
                                         )

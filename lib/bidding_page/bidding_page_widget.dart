@@ -283,7 +283,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '  ${textMerchRecordList[widget.prod_index].time} hours',
+                                  '  End at ${textMerchRecordList[widget.prod_index].time}',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -465,34 +465,124 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                       Expanded(
                         child: Align(
                           alignment: AlignmentDirectional(0.7, -0.3),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'Bid Your Price',
-                            options: FFButtonOptions(
-                              width: 170.0,
-                              height: 50.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF24A00E),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
+                          child: StreamBuilder<List<MerchRecord>>(
+                            stream: queryMerchRecord(
+                              singleRecord: true,
                             ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<MerchRecord> buttonMerchRecordList =
+                                  snapshot.data!;
+                              // Return an empty Container when the item does not exist.
+                              if (snapshot.data!.isEmpty) {
+                                return Container();
+                              }
+                              final buttonMerchRecord =
+                                  buttonMerchRecordList.isNotEmpty
+                                      ? buttonMerchRecordList.first
+                                      : null;
+                              return FFButtonWidget(
+                                onPressed: () async {
+                                  if (double.parse(
+                                          _model.textController!.text) >=
+                                      buttonMerchRecord!.ascendingAmount!
+                                          .toDouble()) {
+                                    final merchUpdateData = {
+                                      'price': FieldValue.increment(
+                                          double.parse(
+                                              _model.textController!.text)),
+                                    };
+                                    await buttonMerchRecord.reference
+                                        .update(merchUpdateData);
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Not enough amount!'),
+                                          content: Text(
+                                              'Minimum bidding amount is ${buttonMerchRecord.ascendingAmount!.toDouble()}'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                                text: 'Bid Your Price',
+                                options: FFButtonOptions(
+                                  width: 160.0,
+                                  height: 50.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: Color(0xFF124C08),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              );
+                            },
                           ),
+                          //   child: FFButtonWidget(
+                          //     onPressed: () {
+                          //       final merchUpdateData = {
+                          //   'price': FieldValue.increment(
+                          //       buttonMerchRecord!.ascendingAmount!.toDouble()),
+                          // };
+                          // await buttonMerchRecord.reference
+                          //     .update(merchUpdateData);
+                          //     },
+                          //     text: 'Bid Your Price',
+                          //     options: FFButtonOptions(
+                          //       width: 170.0,
+                          //       height: 50.0,
+                          //       padding: EdgeInsetsDirectional.fromSTEB(
+                          //           0.0, 0.0, 0.0, 0.0),
+                          //       iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          //           0.0, 0.0, 0.0, 0.0),
+                          //       color: Color(0xFF24A00E),
+                          //       textStyle: FlutterFlowTheme.of(context)
+                          //           .subtitle2
+                          //           .override(
+                          //             fontFamily: 'Lexend Deca',
+                          //             color: Colors.white,
+                          //             fontSize: 16.0,
+                          //             fontWeight: FontWeight.w500,
+                          //           ),
+                          //       elevation: 3.0,
+                          //       borderSide: BorderSide(
+                          //         color: Colors.transparent,
+                          //         width: 1.0,
+                          //       ),
+                          //     ),
+                          //   ),
                         ),
                       ),
                     ],
