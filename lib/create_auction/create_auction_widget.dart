@@ -1157,7 +1157,7 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                     ascendingAmount: _model.countControllerValue,
                     time: _model.timeController.text,
                     user_id:
-                        "User name: ${currentUserDisplayName} \nPhone No: ${currentPhoneNumber}",
+                        "User name: ${currentUserDisplayName}\nPhone No: ${currentPhoneNumber}",
                   );
                   await MerchRecord.collection.doc().set(merchCreateData);
                   await showDialog(

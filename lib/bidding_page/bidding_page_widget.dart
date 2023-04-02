@@ -491,20 +491,24 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                               }
                               final buttonMerchRecord =
                                   buttonMerchRecordList.isNotEmpty
-                                      ? buttonMerchRecordList.first
+                                      ? buttonMerchRecordList
                                       : null;
                               return FFButtonWidget(
                                 onPressed: () async {
                                   if (double.parse(
                                           _model.textController!.text) >=
-                                      buttonMerchRecord!.ascendingAmount!
+                                      biddingPageMerchRecordList[
+                                              widget.prod_index]
+                                          .ascendingAmount!
                                           .toDouble()) {
                                     final merchUpdateData = {
                                       'price': FieldValue.increment(
                                           double.parse(
                                               _model.textController!.text)),
                                     };
-                                    await buttonMerchRecord.reference
+                                    await biddingPageMerchRecordList[
+                                            widget.prod_index]
+                                        .reference
                                         .update(merchUpdateData);
                                   } else {
                                     await showDialog(
@@ -513,7 +517,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                         return AlertDialog(
                                           title: Text('Not enough amount!'),
                                           content: Text(
-                                              'Minimum bidding amount is ${buttonMerchRecord.ascendingAmount!.toDouble()}'),
+                                              'Minimum bidding amount is ${biddingPageMerchRecordList[widget.prod_index].ascendingAmount}'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -617,13 +621,16 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                       onPressed: () async {
                         final merchUpdateData = {
                           'price': FieldValue.increment(
-                              buttonMerchRecord!.ascendingAmount!.toDouble()),
+                              biddingPageMerchRecordList[widget.prod_index]
+                                  .ascendingAmount!
+                                  .toDouble()),
                         };
-                        await buttonMerchRecord.reference
+                        await biddingPageMerchRecordList[widget.prod_index]
+                            .reference
                             .update(merchUpdateData);
                       },
                       text:
-                          'Min Bid: ${buttonMerchRecord!.ascendingAmount?.toString()}',
+                          'Min Bid: ${biddingPageMerchRecordList[widget.prod_index].ascendingAmount}',
                       options: FFButtonOptions(
                         width: 160.0,
                         height: 40.0,
