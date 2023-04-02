@@ -143,14 +143,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 ),
                               ),
                             ),
-                            AuthUserStreamWidget(
-                              builder: (context) => Image.network(
-                                currentUserPhoto,
-                                width: 100.0,
-                                height: 100.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                            // AuthUserStreamWidget(
+                            //   builder: (context) => Image.network(
+                            //     currentUserPhoto,
+                            //     width: 100.0,
+                            //     height: 100.0,
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

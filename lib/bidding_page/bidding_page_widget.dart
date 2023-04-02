@@ -1,3 +1,5 @@
+import 'package:zeeed2/backend/schema/bidding_history.dart';
+
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -628,6 +630,14 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                         await biddingPageMerchRecordList[widget.prod_index]
                             .reference
                             .update(merchUpdateData);
+                        await BiddingHistory.createBiddingHistory(
+                            biddingPageMerchRecordList[widget.prod_index].name,
+                            biddingPageMerchRecordList[widget.prod_index]
+                                .price!
+                                .toDouble(),
+                            biddingPageMerchRecordList[widget.prod_index].time,
+                            biddingPageMerchRecordList[widget.prod_index]
+                                .photo);
                       },
                       text:
                           'Min Bid: ${biddingPageMerchRecordList[widget.prod_index].ascendingAmount}',
