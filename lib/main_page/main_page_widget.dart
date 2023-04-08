@@ -312,7 +312,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                 onTap: () async {
+                                onTap: () async {
                                   context.pushNamed('BiddingPage');
                                 },
                                 child: ClipRRect(
@@ -372,7 +372,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -424,7 +424,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                 onTap: () async {
+                                onTap: () async {
                                   context.pushNamed('BiddingPage');
                                 },
                                 child: ClipRRect(
@@ -484,7 +484,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -536,7 +536,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                 onTap: () async {
+                                onTap: () async {
                                   context.pushNamed('BiddingPage');
                                 },
                                 child: ClipRRect(
@@ -596,7 +596,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -648,7 +648,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                 onTap: () async {
+                                onTap: () async {
                                   context.pushNamed('BiddingPage');
                                 },
                                 child: ClipRRect(
@@ -678,7 +678,6 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 4.0, 0.0, 0.0),
-
                                 child: Text(
                                   'Nissan Patrol 2018',
                                   style: FlutterFlowTheme.of(context)
@@ -709,7 +708,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -821,7 +820,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -874,7 +873,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                           children: [
                             Expanded(
                               child: InkWell(
-                                 onTap: () async {
+                                onTap: () async {
                                   context.pushNamed('BiddingPage');
                                 },
                                 child: ClipRRect(
@@ -934,7 +933,7 @@ class _MainPageWidgetState extends State<MainPageWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.normal,
                                       ),

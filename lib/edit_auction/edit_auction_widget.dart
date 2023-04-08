@@ -70,7 +70,7 @@ class _EditAuctionWidgetState extends State<EditAuctionWidget>
               'Edit Auction',
               style: FlutterFlowTheme.of(context).bodyText1.override(
                     fontFamily: 'Poppins',
-                    color: Color(0xFF24A00E),
+                    color: Color(0xFF124C08),
                     fontSize: 22.0,
                   ),
             ),
@@ -165,7 +165,7 @@ class _EditAuctionWidgetState extends State<EditAuctionWidget>
                             textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context).title3.override(
                                   fontFamily: 'Poppins',
-                                  color: Color(0xFF24A00E),
+                                  color: Color(0xFF124C08),
                                 ),
                           ),
                         ),
@@ -256,7 +256,7 @@ class _EditAuctionWidgetState extends State<EditAuctionWidget>
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF24A00E),
+                        color: Color(0xFF124C08),
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
                                   fontFamily: 'Poppins',

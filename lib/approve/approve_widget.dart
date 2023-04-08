@@ -93,7 +93,7 @@ class _ApproveWidgetState extends State<ApproveWidget> {
                 'Auction Ended!',
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Lexend Deca',
-                      color: Color(0xFF24A00E),
+                      color: Color(0xFF124C08),
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -223,7 +223,7 @@ class _ApproveWidgetState extends State<ApproveWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF24A00E),
+                            color: Color(0xFF124C08),
                             textStyle:
                                 FlutterFlowTheme.of(context).subtitle2.override(
                                       fontFamily: 'Poppins',

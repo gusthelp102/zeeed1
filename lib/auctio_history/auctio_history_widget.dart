@@ -189,7 +189,7 @@ class _AuctioHistoryWidgetState extends State<AuctioHistoryWidget>
                                                 .subtitle1
                                                 .override(
                                                   fontFamily: 'Poppins',
-                                                  color: Color(0xFF24A00E),
+                                                  color: Color(0xFF124C08),
                                                 ),
                                           ),
                                         ],
@@ -290,7 +290,7 @@ class _AuctioHistoryWidgetState extends State<AuctioHistoryWidget>
                                                 .subtitle1
                                                 .override(
                                                   fontFamily: 'Poppins',
-                                                  color: Color(0xFF24A00E),
+                                                  color: Color(0xFF124C08),
                                                 ),
                                           ),
                                         ],

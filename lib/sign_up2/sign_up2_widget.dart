@@ -48,7 +48,7 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
-        backgroundColor: Color(0xFF24A00E),
+        backgroundColor: Color(0xFF124C08),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,

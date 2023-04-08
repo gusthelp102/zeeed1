@@ -47,7 +47,7 @@ class _NewMainPageWidgetState extends State<NewMainPageWidget> {
               width: MediaQuery.of(context).size.width * 1.0,
               height: 152.0,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.red,
                 shape: BoxShape.rectangle,
               ),
               child: Column(
@@ -395,7 +395,7 @@ class _NewMainPageWidgetState extends State<NewMainPageWidget> {
                                           .bodyText2
                                           .override(
                                             fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF24A00E),
+                                            color: Color(0xFF124C08),
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.normal,
                                           ),

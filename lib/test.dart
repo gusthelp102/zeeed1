@@ -141,7 +141,7 @@ class _HomeState extends State<Home> {
                       Radius.circular(16.0),
                     ),
                   ),
-                  selectedTileColor: Colors.lightGreen[200],
+                  selectedTileColor: Color(0xFF124C08),
                   title: Text(
                     "Welcome Back",
                     style: Theme.of(context).textTheme.subtitle1!.merge(
@@ -273,7 +273,7 @@ class _HomeState extends State<Home> {
                               right: 5, left: 5, top: 24, bottom: 12),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24.0),
-                            // color: Colors.lightGreen[200],
+                            // color: Color(0xFF124C08),
                           ),
                         ),
                       ),
@@ -315,7 +315,7 @@ class _HomeState extends State<Home> {
           ? FloatingActionButtonLocation.centerDocked
           : FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightGreen[200],
+        backgroundColor: Color(0xFF124C08),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CreateAuctionWidget()));
@@ -505,7 +505,7 @@ class _GridBState extends State<GridB> {
                                       blurRadius: 15.0,
                                       offset: Offset(0.0, 0.75))
                                 ],
-                                color: Colors.lightGreen[200],
+                                color: Color(0xFF124C08),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -56,7 +56,7 @@
 //           'Create Auction',
 //           style: FlutterFlowTheme.of(context).title2.override(
 //                 fontFamily: 'Poppins',
-//                 color: Color(0xFF24A00E),
+//                 color: Color(0xFF124C08),
 //               ),
 //         ),
 //         actions: [
@@ -357,7 +357,7 @@
 //                                     .bodyText1
 //                                     .override(
 //                                       fontFamily: 'Poppins',
-//                                       color: Color(0xFF24A00E),
+//                                       color: Color(0xFF124C08),
 //                                     ),
 //                                 textAlign: TextAlign.start,
 //                                 keyboardType: TextInputType.number,
@@ -605,7 +605,7 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
           'Create Auction',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFF24A00E),
+                color: Color(0xFF124C08),
               ),
         ),
         actions: [
@@ -768,14 +768,14 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                         //   children: [
                         //     ElevatedButton(
                         //         style: ElevatedButton.styleFrom(
-                        //             backgroundColor: Colors.lightGreen[200]),
+                        //             backgroundColor: Color(0xFF124C08)),
                         //         onPressed: () {
                         //           select_image();
                         //         },
                         //         child: Text("Select images")),
                         //     ElevatedButton(
                         //         style: ElevatedButton.styleFrom(
-                        //             backgroundColor: Colors.lightGreen[200]),
+                        //             backgroundColor: Color(0xFF124C08)),
                         //         onPressed: () {
                         //           uploadFunction(_selectedFiles);
                         //         },
@@ -965,7 +965,7 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF24A00E),
+                                        color: Color(0xFF124C08),
                                       ),
                                   textAlign: TextAlign.start,
                                   keyboardType: TextInputType.number,
@@ -1080,7 +1080,7 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                                 //       .bodyText1
                                 //       .override(
                                 //         fontFamily: 'Poppins',
-                                //         color: Color(0xFF24A00E),
+                                //         color: Color(0xFF124C08),
                                 //       ),
                                 //   textAlign: TextAlign.start,
                                 //   keyboardType: TextInputType.number,

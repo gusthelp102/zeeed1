@@ -103,7 +103,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                 'Live Auction',
                 style: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Lexend Deca',
-                      color: Color(0xFF24A00E),
+                      color: Color(0xFF124C08),
                       fontSize: 22.0,
                       fontWeight: FontWeight.normal,
                     ),
@@ -573,7 +573,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                           //           0.0, 0.0, 0.0, 0.0),
                           //       iconPadding: EdgeInsetsDirectional.fromSTEB(
                           //           0.0, 0.0, 0.0, 0.0),
-                          //       color: Color(0xFF24A00E),
+                          //       color: Color(0xFF124C08),
                           //       textStyle: FlutterFlowTheme.of(context)
                           //           .subtitle2
                           //           .override(
