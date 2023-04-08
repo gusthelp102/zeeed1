@@ -146,14 +146,14 @@ class _HomeState extends State<Home> {
                     "Welcome Back",
                     style: Theme.of(context).textTheme.subtitle1!.merge(
                           const TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18.0,
-                          ),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18.0,
+                              color: Colors.white),
                         ),
                   ),
                   subtitle: AuthUserStreamWidget(
                     builder: (context) => Text(
-                      '${currentUserDisplayName}',
+                      '$currentUserDisplayName',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
                             color: Color(0xFF1E5D13),
