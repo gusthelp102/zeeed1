@@ -87,12 +87,11 @@ class _BidHistoryWidgetState extends State<BidHistoryWidget>
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Expanded(child: Container());
+                return Container();
               default:
                 if (snapshot.hasData) {
-                  return SafeArea(
-                    child: ListView.builder(
-                        shrinkWrap: true,
+                  if (snapshot.data!.size != 0)
+                    return ListView.builder(
                         itemCount: snapshot.data!.size,
                         itemBuilder: (context, index) {
                           String id = snapshot.data!.docs[index].data()["id"];
@@ -104,6 +103,7 @@ class _BidHistoryWidgetState extends State<BidHistoryWidget>
                               snapshot.data!.docs[index].data()["date"];
                           String photo =
                               snapshot.data!.docs[index].data()["photo"];
+                          print(amount);
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 16, 12.0, 16, 44.0),
@@ -121,92 +121,86 @@ class _BidHistoryWidgetState extends State<BidHistoryWidget>
                                 ],
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                              child: Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(0.0),
-                                        bottomRight: Radius.circular(0.0),
-                                        topLeft: Radius.circular(12.0),
-                                        topRight: Radius.circular(12.0),
-                                      ),
-                                      child: Image.network(
-                                        photo,
-                                        width: double.infinity,
-                                        height: 240.0,
-                                        fit: BoxFit.cover,
-                                      ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(12.0),
+                                      topRight: Radius.circular(12.0),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 12.0, 16.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            name,
+                                    child: Image.network(
+                                      photo,
+                                      width: double.infinity,
+                                      height: 240.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 12.0, 16.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          name,
+                                          style: FlutterFlowTheme.of(context)
+                                              .title2,
+                                        ),
+                                        Text(
+                                          '$amount KD',
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF124C08),
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 16.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        // Text(
+                                        //   'Published By Ahmad Al-Ali',
+                                        //   style: FlutterFlowTheme.of(context)
+                                        //       .bodyText2
+                                        //       .override(
+                                        //         fontFamily: 'Poppins',
+                                        //         fontSize: 12.0,
+                                        //       ),
+                                        // ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 0.0),
+                                          child: Text(
+                                            date,
                                             style: FlutterFlowTheme.of(context)
-                                                .title2,
-                                          ),
-                                          Text(
-                                            '$amount KD',
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle1
+                                                .bodyText2
                                                 .override(
                                                   fontFamily: 'Poppins',
-                                                  color: Color(0xFF124C08),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .black600,
                                                 ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 16.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          // Text(
-                                          //   'Published By Ahmad Al-Ali',
-                                          //   style: FlutterFlowTheme.of(context)
-                                          //       .bodyText2
-                                          //       .override(
-                                          //         fontFamily: 'Poppins',
-                                          //         fontSize: 12.0,
-                                          //       ),
-                                          // ),
-                                          Expanded(
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  1.0, 0.0),
-                                              child: Text(
-                                                date,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText2
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .black600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           );
-                        }),
-                  );
+                        });
                 }
                 return Center(
                   child: Text('No history'),

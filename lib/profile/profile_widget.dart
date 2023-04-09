@@ -121,6 +121,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
@@ -143,14 +144,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 ),
                               ),
                             ),
-                            // AuthUserStreamWidget(
-                            //   builder: (context) => Image.network(
-                            //     currentUserPhoto,
-                            //     width: 100.0,
-                            //     height: 100.0,
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            // ),
+                            AuthUserStreamWidget(
+                              builder: (context) => Image.network(
+                                currentUserPhoto,
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ],
                         ),
                       ),

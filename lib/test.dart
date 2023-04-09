@@ -79,6 +79,8 @@ class _HomeState extends State<Home> {
   ScrollController _scrollController = ScrollController();
   int pageNo = 0;
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   Timer? carasouelTmer;
 
   Timer getTimer() {
@@ -219,6 +221,9 @@ class _HomeState extends State<Home> {
                             // signOut();
                           },
                           child: ListTile(
+                            onTap: () {
+                              auth.signOut();
+                            },
                             leading: Icon(
                               Icons.logout,
                             ),
@@ -227,13 +232,13 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ],
-                    icon: Icon(Icons.person, color: Colors.white, size: 33.0),
-                    // CircleAvatar(
-                    //   backgroundImage: const NetworkImage(
-                    //     'https://images.unsplash.com/photo-1644982647869-e1337f992828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
-                    //   ),
-                    // child: Container(),
-                    // ),
+                    icon: ClipOval(
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(25), // Image radius
+                        child:
+                            Image.network(currentUserPhoto, fit: BoxFit.cover),
+                      ),
+                    ),
                   ),
                 ),
               ),

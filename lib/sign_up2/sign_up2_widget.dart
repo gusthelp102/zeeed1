@@ -1,3 +1,6 @@
+import 'package:zeeed2/new_main_page/new_main_page_widget.dart';
+import 'package:zeeed2/test.dart';
+
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
@@ -241,7 +244,9 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.network(
-                                    _model.uploadedFileUrl,
+                                    _model.uploadedFileUrl.isEmpty
+                                        ? 'https://firebasestorage.googleapis.com/v0/b/zeeed2-38d64.appspot.com/o/profile_default_image.jpg?alt=media&token=4e9f6b60-5ee9-4d86-b84e-24d9e143e5a9'
+                                        : _model.uploadedFileUrl,
                                     fit: BoxFit.fill,
                                   ),
                                 ),
@@ -292,7 +297,9 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
                                       await currentUserReference!
                                           .update(usersUpdateData);
 
-                                      context.pushNamed('NewMainPage');
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => Home()));
                                     },
                                     text: 'Continue',
                                     options: FFButtonOptions(
