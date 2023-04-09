@@ -471,7 +471,6 @@ class _GridBState extends State<GridB> {
                 isGreaterThan: DateFormat('MM-dd-yyyy hh:mm')
                     .format(DateTime.now())
                     .toString())
-            .orderBy('time')
             .snapshots(),
         builder: (context, snapshots) {
           return (snapshots.connectionState == ConnectionState.waiting)
@@ -505,7 +504,7 @@ class _GridBState extends State<GridB> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => BiddingPageWidget(
-                                            prod_index: index,
+                                            photo: data['Photo'],
                                           )));
                             },
                             child: Container(

@@ -16,21 +16,25 @@ import 'bidding_page_model.dart';
 export 'bidding_page_model.dart';
 
 class BiddingPageWidget extends StatefulWidget {
-  int prod_index;
+  String photo;
 
   BiddingPageWidget({
     Key? key,
-    required this.prod_index,
+    required this.photo,
     this.auctionRif,
   }) : super(key: key);
 
   final DocumentReference? auctionRif;
 
   @override
-  _BiddingPageWidgetState createState() => _BiddingPageWidgetState();
+  _BiddingPageWidgetState createState() =>
+      _BiddingPageWidgetState(photo: photo);
 }
 
 class _BiddingPageWidgetState extends State<BiddingPageWidget> {
+  _BiddingPageWidgetState({required this.photo});
+
+  String photo;
   late BiddingPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -74,9 +78,11 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
         if (snapshot.data!.isEmpty) {
           return Container();
         }
-        print(biddingPageMerchRecordList[widget.prod_index].photo);
+        print(photo);
         final biddingPageMerchRecord = biddingPageMerchRecordList.isNotEmpty
-            ? biddingPageMerchRecordList[widget.prod_index]
+            ? biddingPageMerchRecordList
+                .where((element) => element.photo == photo)
+                .first
             : null;
         return Scaffold(
           key: scaffoldKey,
@@ -152,8 +158,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                   scrollDirection: Axis.horizontal,
                                   children: [
                                     Image.network(
-                                      biddingPageMerchRecordList[
-                                              widget.prod_index]
+                                      biddingPageMerchRecordList
+                                          .where((element) =>
+                                              element.photo == photo)
+                                          .first
                                           .photo
                                           .toString(),
                                       width: 100.0,
@@ -161,8 +169,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       fit: BoxFit.cover,
                                     ),
                                     Image.network(
-                                      biddingPageMerchRecordList[
-                                              widget.prod_index]
+                                      biddingPageMerchRecordList
+                                          .where((element) =>
+                                              element.photo == photo)
+                                          .first
                                           .photo
                                           .toString(),
                                       width: 100.0,
@@ -170,10 +180,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       fit: BoxFit.cover,
                                     ),
                                     Image.network(
-                                      biddingPageMerchRecordList[
-                                              widget.prod_index]
-                                          .photo
-                                          .toString(),
+                                      photo,
                                       width: 100.0,
                                       height: 100.0,
                                       fit: BoxFit.cover,
@@ -246,12 +253,16 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                             }
                             List<MerchRecord> textMerchRecordList =
                                 snapshot.data!;
-                            final textMerchRecord =
-                                textMerchRecordList.isNotEmpty
-                                    ? textMerchRecordList[widget.prod_index]
-                                    : null;
-                            String? d =
-                                textMerchRecordList[widget.prod_index].time;
+                            final textMerchRecord = textMerchRecordList
+                                    .isNotEmpty
+                                ? biddingPageMerchRecordList
+                                    .where((element) => element.photo == photo)
+                                    .first
+                                : null;
+                            String? d = biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
+                                .time;
                             DateTime time =
                                 DateFormat('MM-dd-yyyy hh:mm').parse(d!);
                             return Column(
@@ -275,10 +286,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                      "${textMerchRecordList[widget.prod_index].description}"),
+                                      "${biddingPageMerchRecordList.where((element) => element.photo == photo).first.description}"),
                                 ),
                                 Text(
-                                  '  ${textMerchRecordList[widget.prod_index].price} KD',
+                                  '  ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.price} KD',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -289,7 +300,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       ),
                                 ),
                                 Text(
-                                  'End at ${textMerchRecordList[widget.prod_index].time}',
+                                  'End at ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.time}',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
@@ -313,7 +324,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                      "${textMerchRecordList[widget.prod_index].user_id}"),
+                                      "${biddingPageMerchRecordList.where((element) => element.photo == photo).first.user_id}"),
                                 ),
                               ],
                             );
@@ -514,8 +525,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                 onPressed: () async {
                                   if (double.parse(
                                           _model.textController!.text) >=
-                                      biddingPageMerchRecordList[
-                                              widget.prod_index]
+                                      biddingPageMerchRecordList
+                                          .where((element) =>
+                                              element.photo == photo)
+                                          .first
                                           .ascendingAmount!
                                           .toDouble()) {
                                     final merchUpdateData = {
@@ -523,8 +536,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                           double.parse(
                                               _model.textController!.text)),
                                     };
-                                    await biddingPageMerchRecordList[
-                                            widget.prod_index]
+                                    await biddingPageMerchRecordList
+                                        .where(
+                                            (element) => element.photo == photo)
+                                        .first
                                         .reference
                                         .update(merchUpdateData);
                                   } else {
@@ -534,7 +549,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                         return AlertDialog(
                                           title: Text('Not enough amount!'),
                                           content: Text(
-                                              'Minimum bidding amount is ${biddingPageMerchRecordList[widget.prod_index].ascendingAmount}'),
+                                              'Minimum bidding amount is ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.ascendingAmount}'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -638,24 +653,38 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                       onPressed: () async {
                         final merchUpdateData = {
                           'price': FieldValue.increment(
-                              biddingPageMerchRecordList[widget.prod_index]
+                              biddingPageMerchRecordList
+                                  .where((element) => element.photo == photo)
+                                  .first
                                   .ascendingAmount!
                                   .toDouble()),
                         };
-                        await biddingPageMerchRecordList[widget.prod_index]
+                        await biddingPageMerchRecordList
+                            .where((element) => element.photo == photo)
+                            .first
                             .reference
                             .update(merchUpdateData);
                         await BiddingHistory.createBiddingHistory(
-                            biddingPageMerchRecordList[widget.prod_index].name,
-                            biddingPageMerchRecordList[widget.prod_index]
+                            biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
+                                .name,
+                            biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
                                 .price!
                                 .toDouble(),
-                            biddingPageMerchRecordList[widget.prod_index].time,
-                            biddingPageMerchRecordList[widget.prod_index]
+                            biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
+                                .time,
+                            biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
                                 .photo);
                       },
                       text:
-                          'Min Bid: ${biddingPageMerchRecordList[widget.prod_index].ascendingAmount}',
+                          'Min Bid: ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.ascendingAmount}',
                       options: FFButtonOptions(
                         width: 160.0,
                         height: 40.0,
