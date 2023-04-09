@@ -1150,15 +1150,15 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                 onPressed: () async {
                   // print();
                   final merchCreateData = createMerchRecordData(
-                    name: _model.productNameController.text,
-                    description: _model.descpretionController.text,
-                    price: double.tryParse(_model.priceController.text),
-                    photo: _model.uploadedFileUrl,
-                    ascendingAmount: _model.countControllerValue,
-                    time: _model.timeController.text,
-                    user_id:
-                        "User name: ${currentUserDisplayName}\nPhone No: ${currentPhoneNumber}",
-                  );
+                      name: _model.productNameController.text,
+                      description: _model.descpretionController.text,
+                      price: double.tryParse(_model.priceController.text),
+                      photo: _model.uploadedFileUrl,
+                      ascendingAmount: _model.countControllerValue,
+                      time: _model.timeController.text,
+                      user_id: currentUserUid
+                      // "User name: ${currentUserDisplayName}\nPhone No: ${currentPhoneNumber}",
+                      );
                   await MerchRecord.collection.doc().set(merchCreateData);
                   await showDialog(
                     context: context,

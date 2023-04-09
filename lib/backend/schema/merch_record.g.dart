@@ -174,6 +174,8 @@ class _$MerchRecord extends MerchRecord {
   @override
   final String? time;
   @override
+  final String? id;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$MerchRecord([void Function(MerchRecordBuilder)? updates]) =>
@@ -189,6 +191,7 @@ class _$MerchRecord extends MerchRecord {
       this.photo,
       this.user_id,
       this.time,
+      this.id,
       this.ffRef})
       : super._();
 
@@ -293,6 +296,10 @@ class MerchRecordBuilder implements Builder<MerchRecord, MerchRecordBuilder> {
   String? _time;
   String? get time => _$this._time;
   set time(String? time) => _$this._time = time;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;

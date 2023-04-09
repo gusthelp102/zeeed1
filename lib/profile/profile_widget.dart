@@ -1,3 +1,5 @@
+import 'package:zeeed2/bid_history/auction_history.dart';
+
 import '/auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -217,7 +219,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 24.0, 0.0, 0.0, 0.0),
                             child: InkWell(
                               onTap: () async {
-                                context.pushNamed('BidHistory');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            AuctionHistory()));
                               },
                               child: Text(
                                 'Auction History',
