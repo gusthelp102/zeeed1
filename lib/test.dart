@@ -232,13 +232,13 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ],
-                    icon: ClipOval(
-                      child: SizedBox.fromSize(
-                        size: Size.fromRadius(25), // Image radius
-                        child:
-                            Image.network(currentUserPhoto, fit: BoxFit.cover),
-                      ),
-                    ),
+                    icon: Icon(Icons.person, color: Colors.white, size: 33.0),
+                    // CircleAvatar(
+                    //   backgroundImage: const NetworkImage(
+                    //     'https://images.unsplash.com/photo-1644982647869-e1337f992828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
+                    //   ),
+                    // child: Container(),
+                    // ),
                   ),
                 ),
               ),
@@ -465,7 +465,14 @@ class _GridBState extends State<GridB> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Merch').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('Merch')
+            .where('time',
+                isGreaterThan: DateFormat('MM-dd-yyyy hh:mm')
+                    .format(DateTime.now())
+                    .toString())
+            .orderBy('time')
+            .snapshots(),
         builder: (context, snapshots) {
           return (snapshots.connectionState == ConnectionState.waiting)
               ? Center(
@@ -484,6 +491,8 @@ class _GridBState extends State<GridB> {
                   itemBuilder: (context, index) {
                     var data = snapshots.data!.docs[index].data()
                         as Map<String, dynamic>;
+                    DateTime time =
+                        DateFormat('MM-dd-yyyy hh:mm').parse(data['time']);
                     //////
 
                     return (data['price'].toString() == '999')
@@ -566,7 +575,22 @@ class _GridBState extends State<GridB> {
                                           padding: EdgeInsets.all(1.0),
                                           child: Text(
                                             "Ends at ${data['time']}",
-                                            style: TextStyle(color: Colors.red),
+                                            style: TextStyle(
+                                              color: time
+                                                          .difference(
+                                                              DateTime.now())
+                                                          .inHours <
+                                                      3
+                                                  ? Colors.red
+                                                  : (time
+                                                              .difference(
+                                                                  DateTime
+                                                                      .now())
+                                                              .inDays >
+                                                          1
+                                                      ? Colors.green
+                                                      : Colors.yellow),
+                                            ),
                                           ),
                                         )
                                       ],

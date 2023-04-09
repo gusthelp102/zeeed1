@@ -250,6 +250,10 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                 textMerchRecordList.isNotEmpty
                                     ? textMerchRecordList[widget.prod_index]
                                     : null;
+                            String? d =
+                                textMerchRecordList[widget.prod_index].time;
+                            DateTime time =
+                                DateFormat('MM-dd-yyyy hh:mm').parse(d!);
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,12 +289,23 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '  End at ${textMerchRecordList[widget.prod_index].time}',
+                                  'End at ${textMerchRecordList[widget.prod_index].time}',
                                   style: FlutterFlowTheme.of(context)
                                       .title3
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF22A556),
+                                        color: time
+                                                    .difference(DateTime.now())
+                                                    .inHours <
+                                                3
+                                            ? Colors.red
+                                            : (time
+                                                        .difference(
+                                                            DateTime.now())
+                                                        .inDays >
+                                                    1
+                                                ? Colors.green
+                                                : Colors.yellow),
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
