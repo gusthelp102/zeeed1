@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:zeeed2/profile/other_profile_widget.dart';
 
 class Search_user extends StatefulWidget {
   const Search_user({Key? key}) : super(key: key);
@@ -41,9 +42,16 @@ class _Search_userState extends State<Search_user> {
                     itemBuilder: (context, index) {
                       var data = snapshots.data!.docs[index].data()
                           as Map<String, dynamic>;
-
-                      if (name.isEmpty) {
+                      if (snapshots.connectionState ==
+                          ConnectionState.waiting) {
+                        return Container();
+                      } else if (name.isEmpty) {
                         return ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    OtherProfileWidget(email: data['email'])));
+                          },
                           title: Text(
                             data['display_name'],
                             maxLines: 1,
