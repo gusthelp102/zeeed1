@@ -122,15 +122,6 @@ class _AuctionHistoryState extends State<AuctionHistory> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        // Text(
-                                        //   'Published By Ahmad Al-Ali',
-                                        //   style: FlutterFlowTheme.of(context)
-                                        //       .bodyText2
-                                        //       .override(
-                                        //         fontFamily: 'Poppins',
-                                        //         fontSize: 12.0,
-                                        //       ),
-                                        // ),
                                         Align(
                                           alignment:
                                               AlignmentDirectional(1.0, 0.0),
