@@ -53,7 +53,7 @@ class _Search_userState extends State<Search_user> {
                                     OtherProfileWidget(email: data['email'])));
                           },
                           title: Text(
-                            data['display_name'],
+                            data['display_name'] ?? 'name',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -71,7 +71,11 @@ class _Search_userState extends State<Search_user> {
                                 fontWeight: FontWeight.bold),
                           ),
                           leading: CircleAvatar(
-                            backgroundImage: NetworkImage(data['photo_url']),
+                            backgroundImage: NetworkImage(data['photo_url'] ==
+                                        '' ||
+                                    data['photo_url'] == null
+                                ? 'https://firebasestorage.googleapis.com/v0/b/zeeed2-38d64.appspot.com/o/profile_default_image.jpg?alt=media&token=4e9f6b60-5ee9-4d86-b84e-24d9e143e5a9'
+                                : data['photo_url']),
                           ),
                         );
                       }
