@@ -146,14 +146,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 ),
                               ),
                             ),
-                            AuthUserStreamWidget(
-                              builder: (context) => Image.network(
-                                currentUserPhoto,
+                            AuthUserStreamWidget(builder: (context) {
+                              return Image.network(
+                                currentUserPhoto == ''
+                                    ? 'https://firebasestorage.googleapis.com/v0/b/zeeed2-38d64.appspot.com/o/profile_default_image.jpg?alt=media&token=4e9f6b60-5ee9-4d86-b84e-24d9e143e5a9'
+                                    : currentUserPhoto,
                                 width: 100.0,
                                 height: 100.0,
                                 fit: BoxFit.cover,
-                              ),
-                            ),
+                              );
+                            }),
                           ],
                         ),
                       ),
