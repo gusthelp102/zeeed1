@@ -542,6 +542,28 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                         .first
                                         .reference
                                         .update(merchUpdateData);
+                                    await BiddingHistory.createBiddingHistory(
+                                        biddingPageMerchRecordList
+                                            .where((element) =>
+                                                element.photo == photo)
+                                            .first
+                                            .name,
+                                        biddingPageMerchRecordList
+                                            .where((element) =>
+                                                element.photo == photo)
+                                            .first
+                                            .price!
+                                            .toDouble(),
+                                        biddingPageMerchRecordList
+                                            .where((element) =>
+                                                element.photo == photo)
+                                            .first
+                                            .time,
+                                        biddingPageMerchRecordList
+                                            .where((element) =>
+                                                element.photo == photo)
+                                            .first
+                                            .photo);
                                   } else {
                                     await showDialog(
                                       context: context,
