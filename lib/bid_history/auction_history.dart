@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zeeed2/auth/auth_util.dart';
+import 'package:zeeed2/bid_history/edit_auction2.dart';
 import 'package:zeeed2/bid_history/view_bid_history.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -64,7 +65,7 @@ class _AuctionHistoryState extends State<AuctionHistory> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          ViewBidHistoryWidget(photo: photo)));
+                                          EditAuction2(photo: photo)));
                             },
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
