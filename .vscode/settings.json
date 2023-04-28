@@ -1,0 +1,6 @@
+{
+    "diffEditor.codeLens": true,
+    "editor.codeLensFontSize": 10,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true
+}

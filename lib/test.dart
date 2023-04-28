@@ -55,6 +55,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:zeeed2/about_us.dart';
 import 'package:zeeed2/bidding_page/bidding_page_widget.dart';
 import 'package:zeeed2/create_auction/create_auction_widget.dart';
 import 'package:zeeed2/details_page.dart';
@@ -191,10 +192,74 @@ class _HomeState extends State<Home> {
                       // ),
                       PopupMenuDivider(),
                       PopupMenuItem(
-                        child: Text("Settings"),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                          ),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  child: AlertDialog(
+                                    title: Text("What do you want to search ?"),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Search_user()));
+                                          },
+                                          child: Text("User")),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Product_search()));
+                                          },
+                                          child: Text("Product")),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                CupertinoIcons.search,
+                              ),
+                              Container(width: 5),
+                              Text('Search'),
+                            ],
+                          ),
+                        ),
                       ),
                       PopupMenuItem(
-                        child: Text("About Us"),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AboutUs()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                CupertinoIcons.person,
+                              ),
+                              Container(width: 5),
+                              Text('About Us'),
+                            ],
+                          ),
+                        ),
                       ),
                       PopupMenuDivider(),
                       PopupMenuItem(
@@ -335,65 +400,7 @@ class _HomeState extends State<Home> {
           shape: const CircularNotchedRectangle(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.home_outlined,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.heart,
-                ),
-              ),
-              const SizedBox(
-                width: 50,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  CupertinoIcons.settings,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Container(
-                        child: AlertDialog(
-                          title: Text("What do you want to search ?"),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Search_user()));
-                                },
-                                child: Text("User")),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Product_search()));
-                                },
-                                child: Text("Product")),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                icon: const Icon(
-                  CupertinoIcons.search,
-                ),
-              ),
-            ],
+            children: [],
           ),
         ),
         duration: const Duration(

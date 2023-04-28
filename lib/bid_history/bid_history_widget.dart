@@ -12,8 +12,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'bid_history_model.dart';
-export 'bid_history_model.dart';
 
 class BidHistoryWidget extends StatefulWidget {
   const BidHistoryWidget({Key? key}) : super(key: key);
@@ -24,21 +22,16 @@ class BidHistoryWidget extends StatefulWidget {
 
 class _BidHistoryWidgetState extends State<BidHistoryWidget>
     with TickerProviderStateMixin {
-  late BidHistoryModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BidHistoryModel());
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
     _unfocusNode.dispose();
     super.dispose();
   }

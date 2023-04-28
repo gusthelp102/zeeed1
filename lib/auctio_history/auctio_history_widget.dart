@@ -7,8 +7,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'auctio_history_model.dart';
-export 'auctio_history_model.dart';
 
 class AuctioHistoryWidget extends StatefulWidget {
   const AuctioHistoryWidget({Key? key}) : super(key: key);
@@ -19,21 +17,16 @@ class AuctioHistoryWidget extends StatefulWidget {
 
 class _AuctioHistoryWidgetState extends State<AuctioHistoryWidget>
     with TickerProviderStateMixin {
-  late AuctioHistoryModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AuctioHistoryModel());
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
     _unfocusNode.dispose();
     super.dispose();
   }
