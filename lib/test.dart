@@ -55,8 +55,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:zeeed2/about_us.dart';
 import 'package:zeeed2/bidding_page/bidding_page_widget.dart';
+import 'package:zeeed2/countdown_timer.dart';
 import 'package:zeeed2/create_auction/create_auction_widget.dart';
 import 'package:zeeed2/details_page.dart';
 import 'package:zeeed2/flutter_flow/flutter_flow_util.dart';
@@ -499,113 +501,152 @@ class _GridBState extends State<GridB> {
                         as Map<String, dynamic>;
                     DateTime time =
                         DateFormat('MM-dd-yyyy hh:mm').parse(data['time']);
-                    //////
 
-                    return (data['price'].toString() == '999')
-                        ? Center(
-                            child: Text("data"),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BiddingPageWidget(
-                                            photo: data['Photo'],
-                                          )));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  15.0,
-                                ),
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                      color: Colors.black54,
-                                      blurRadius: 15.0,
-                                      offset: Offset(0.0, 0.75))
-                                ],
-                                color: Color(0xFF124C08),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BiddingPageWidget(
+                                      photo: data['Photo'],
+                                    )));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            15.0,
+                          ),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 15.0,
+                                offset: Offset(0.0, 0.75))
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(16.0),
                               ),
+                              child: Image.network(
+                                "${data['Photo']}",
+                                height: 170,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(16.0),
-                                      topRight: Radius.circular(16.0),
-                                    ),
-                                    child: Image.network(
-                                      "${data['Photo']}",
-                                      height: 170,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                    ),
+                                  Text(
+                                    "${data['name']}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1!
+                                        .merge(
+                                          const TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 8.0,
+                                  ),
+                                  Text(
+                                    "${data['price']} KD",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2!
+                                        .merge(
+                                          TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.grey.shade500,
+                                          ),
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 8.0,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${data['name']}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle1!
-                                              .merge(
-                                                const TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                        ),
-                                        const SizedBox(
-                                          height: 8.0,
-                                        ),
-                                        Text(
-                                          "${data['price']} KD",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2!
-                                              .merge(
-                                                TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Colors.grey.shade500,
-                                                ),
-                                              ),
-                                        ),
-                                        const SizedBox(
-                                          height: 8.0,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(1.0),
-                                          child: Text(
-                                            "Ends at ${data['time']}",
-                                            style: TextStyle(
-                                              color: time
-                                                          .difference(
-                                                              DateTime.now())
-                                                          .inHours <
-                                                      3
-                                                  ? Colors.red
-                                                  : (time
-                                                              .difference(
-                                                                  DateTime
-                                                                      .now())
-                                                              .inDays >
-                                                          1
-                                                      ? Colors.green
-                                                      : Colors.yellow),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                    padding: EdgeInsets.all(1.0),
+                                    child: TweenAnimationBuilder<Duration>(
+                                        duration: Duration(
+                                            minutes:
+                                                DateFormat('MM-dd-yyyy hh:mm')
+                                                    .parse(data['time'])
+                                                    .difference(DateTime.now())
+                                                    .inMinutes),
+                                        tween: Tween(
+                                            begin: Duration(
+                                                minutes: DateFormat(
+                                                        'MM-dd-yyyy hh:mm')
+                                                    .parse(data['time'])
+                                                    .difference(DateTime.now())
+                                                    .inMinutes),
+                                            end: Duration.zero),
+                                        builder: (BuildContext context,
+                                            Duration value, Widget? child) {
+                                          final hours = value.inHours;
+                                          final minutes =
+                                              value.inMinutes - (hours * 60);
+                                          return Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 5),
+                                              child: Text(
+                                                  '$hours hours $minutes minutes left',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: time
+                                                                  .difference(
+                                                                      DateTime
+                                                                          .now())
+                                                                  .inHours <
+                                                              3
+                                                          ? Colors.red
+                                                          : (time
+                                                                      .difference(
+                                                                          DateTime
+                                                                              .now())
+                                                                      .inDays >
+                                                                  1
+                                                              ? Colors.green
+                                                              : Colors.yellow),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15)));
+                                        }),
+                                    // child: Text(
+                                    //   "Ends at ${data['time']}",
+                                    //   style: TextStyle(
+                                    //     color: time
+                                    //                 .difference(DateTime.now())
+                                    //                 .inHours <
+                                    //             3
+                                    //         ? Colors.red
+                                    //         : (time
+                                    //                     .difference(
+                                    //                         DateTime.now())
+                                    //                     .inDays >
+                                    //                 1
+                                    //             ? Colors.green
+                                    //             : Colors.yellow),
+                                    //   ),
+                                    // ),
+                                  )
                                 ],
                               ),
                             ),
-                          );
+                          ],
+                        ),
+                      ),
+                    );
                   },
                 );
         });

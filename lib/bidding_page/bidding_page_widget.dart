@@ -523,65 +523,91 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                       : null;
                               return FFButtonWidget(
                                 onPressed: () async {
-                                  if (double.parse(
-                                          _model.textController!.text) >=
-                                      biddingPageMerchRecordList
+                                  if (biddingPageMerchRecordList
                                           .where((element) =>
                                               element.photo == photo)
                                           .first
-                                          .ascendingAmount!
-                                          .toDouble()) {
-                                    final merchUpdateData = {
-                                      'price': FieldValue.increment(
-                                          double.parse(
-                                              _model.textController!.text)),
-                                    };
-                                    await biddingPageMerchRecordList
-                                        .where(
-                                            (element) => element.photo == photo)
-                                        .first
-                                        .reference
-                                        .update(merchUpdateData);
-                                    await BiddingHistory.createBiddingHistory(
-                                        biddingPageMerchRecordList
-                                            .where((element) =>
-                                                element.photo == photo)
-                                            .first
-                                            .name,
-                                        biddingPageMerchRecordList
-                                            .where((element) =>
-                                                element.photo == photo)
-                                            .first
-                                            .price!
-                                            .toDouble(),
-                                        biddingPageMerchRecordList
-                                            .where((element) =>
-                                                element.photo == photo)
-                                            .first
-                                            .time,
-                                        biddingPageMerchRecordList
-                                            .where((element) =>
-                                                element.photo == photo)
-                                            .first
-                                            .photo);
-                                  } else {
-                                    await showDialog(
+                                          .user_id ==
+                                      currentUserUid) {
+                                    showDialog(
                                       context: context,
-                                      builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Not enough amount!'),
-                                          content: Text(
-                                              'Minimum bidding amount is ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.ascendingAmount}'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
+                                      builder: (context) {
+                                        return Container(
+                                          child: AlertDialog(
+                                            title: Text(
+                                                "You can't bid on your auction"),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text("Ok")),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
+                                  } else {
+                                    if (double.parse(
+                                            _model.textController!.text) >=
+                                        biddingPageMerchRecordList
+                                            .where((element) =>
+                                                element.photo == photo)
+                                            .first
+                                            .ascendingAmount!
+                                            .toDouble()) {
+                                      final merchUpdateData = {
+                                        'price': FieldValue.increment(
+                                            double.parse(
+                                                _model.textController!.text)),
+                                      };
+                                      await biddingPageMerchRecordList
+                                          .where((element) =>
+                                              element.photo == photo)
+                                          .first
+                                          .reference
+                                          .update(merchUpdateData);
+                                      await BiddingHistory.createBiddingHistory(
+                                          biddingPageMerchRecordList
+                                              .where((element) =>
+                                                  element.photo == photo)
+                                              .first
+                                              .name,
+                                          biddingPageMerchRecordList
+                                              .where((element) =>
+                                                  element.photo == photo)
+                                              .first
+                                              .price!
+                                              .toDouble(),
+                                          biddingPageMerchRecordList
+                                              .where((element) =>
+                                                  element.photo == photo)
+                                              .first
+                                              .time,
+                                          biddingPageMerchRecordList
+                                              .where((element) =>
+                                                  element.photo == photo)
+                                              .first
+                                              .photo);
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text('Not enough amount!'),
+                                            content: Text(
+                                                'Minimum bidding amount is ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.ascendingAmount}'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
                                   }
                                 },
                                 text: 'Bid Your Price',
@@ -673,37 +699,61 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                         : null;
                     return FFButtonWidget(
                       onPressed: () async {
-                        final merchUpdateData = {
-                          'price': FieldValue.increment(
+                        if (biddingPageMerchRecordList
+                                .where((element) => element.photo == photo)
+                                .first
+                                .user_id ==
+                            currentUserUid) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Container(
+                                child: AlertDialog(
+                                  title: Text("You can't bid on your auction"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Ok")),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          final merchUpdateData = {
+                            'price': FieldValue.increment(
+                                biddingPageMerchRecordList
+                                    .where((element) => element.photo == photo)
+                                    .first
+                                    .ascendingAmount!
+                                    .toDouble()),
+                          };
+                          await biddingPageMerchRecordList
+                              .where((element) => element.photo == photo)
+                              .first
+                              .reference
+                              .update(merchUpdateData);
+                          await BiddingHistory.createBiddingHistory(
                               biddingPageMerchRecordList
                                   .where((element) => element.photo == photo)
                                   .first
-                                  .ascendingAmount!
-                                  .toDouble()),
-                        };
-                        await biddingPageMerchRecordList
-                            .where((element) => element.photo == photo)
-                            .first
-                            .reference
-                            .update(merchUpdateData);
-                        await BiddingHistory.createBiddingHistory(
-                            biddingPageMerchRecordList
-                                .where((element) => element.photo == photo)
-                                .first
-                                .name,
-                            biddingPageMerchRecordList
-                                .where((element) => element.photo == photo)
-                                .first
-                                .price!
-                                .toDouble(),
-                            biddingPageMerchRecordList
-                                .where((element) => element.photo == photo)
-                                .first
-                                .time,
-                            biddingPageMerchRecordList
-                                .where((element) => element.photo == photo)
-                                .first
-                                .photo);
+                                  .name,
+                              biddingPageMerchRecordList
+                                  .where((element) => element.photo == photo)
+                                  .first
+                                  .price!
+                                  .toDouble(),
+                              biddingPageMerchRecordList
+                                  .where((element) => element.photo == photo)
+                                  .first
+                                  .time,
+                              biddingPageMerchRecordList
+                                  .where((element) => element.photo == photo)
+                                  .first
+                                  .photo);
+                        }
                       },
                       text:
                           'Min Bid: ${biddingPageMerchRecordList.where((element) => element.photo == photo).first.ascendingAmount}',

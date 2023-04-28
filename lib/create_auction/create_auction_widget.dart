@@ -1156,7 +1156,9 @@ class _CreateAuctionWidgetState extends State<CreateAuctionWidget> {
                       photo: _model.uploadedFileUrl,
                       ascendingAmount: _model.countControllerValue,
                       time: _model.timeController.text,
-                      user_id: currentUserUid
+                      id: currentUserUid,
+                      user_id: currentUserUid,
+                      onSale: true
                       // "User name: ${currentUserDisplayName}\nPhone No: ${currentPhoneNumber}",
                       );
                   await MerchRecord.collection.doc().set(merchCreateData);

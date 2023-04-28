@@ -1,4 +1,5 @@
 import 'package:zeeed2/bid_history/auction_history.dart';
+import 'package:zeeed2/profile/notification_view.dart';
 
 import '/auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -315,16 +316,25 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Notifocations',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              NotificationView()));
+                                },
+                                child: Text(
+                                  'Notifocations',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
                               ),
                             ),
                             Expanded(

@@ -71,6 +71,8 @@ dependencies:
 
   cupertino_icons: ^1.0.0
   firebase_database: ^10.0.7
+  cron: ^0.5.1
+  flutter_countdown_timer: ^4.1.0
 
 dev_dependencies:
   build_runner: 2.2.0

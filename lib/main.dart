@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:zeeed2/backend/schema/notification.dart';
 import 'package:zeeed2/test.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
@@ -14,6 +16,8 @@ import 'flutter_flow/internationalization.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import 'package:cron/cron.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFirebase();
@@ -21,6 +25,29 @@ void main() async {
   await FlutterFlowTheme.initialize();
 
   runApp(test());
+
+  var cron = new Cron();
+  cron.schedule(new Schedule.parse('*/1 * * * *'), () async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Merch')
+        .where('time',
+            isLessThan: DateFormat('MM-dd-yyyy hh:mm')
+                .format(DateTime.now())
+                .toString())
+        .get();
+    if (querySnapshot.size > 0) {
+      querySnapshot.docs.forEach((doc) async {
+        await UserNotification.createNotification(
+            doc['user_id'],
+            'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
+            doc['price']);
+        await FirebaseFirestore.instance
+            .collection('Merch')
+            .doc(doc.id)
+            .delete();
+      });
+    }
+  });
 }
 
 class test extends StatelessWidget {
