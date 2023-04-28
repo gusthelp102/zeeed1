@@ -47,7 +47,10 @@ class _NotificationViewState extends State<NotificationView> {
                         itemBuilder: (context, index) {
                           String message =
                               snapshot.data!.docs[index].data()["message"];
-                          return ListTile(title: Text(message));
+                          return ListTile(
+                            title: Text(message),
+                            leading: Icon(Icons.notifications),
+                          );
                         }),
                   );
                 }

@@ -593,8 +593,9 @@ class _GridBState extends State<GridB> {
                                         builder: (BuildContext context,
                                             Duration value, Widget? child) {
                                           final hours = value.inHours;
-                                          final minutes =
-                                              value.inMinutes - (hours * 60);
+                                          final minutes = value.inMinutes -
+                                              (hours * 60) +
+                                              1;
                                           return Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
