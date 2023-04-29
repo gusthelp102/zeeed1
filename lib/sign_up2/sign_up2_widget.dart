@@ -27,7 +27,6 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
   late SignUp2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -41,7 +40,6 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -85,7 +83,6 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
       ),
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
