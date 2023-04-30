@@ -34,7 +34,7 @@ void main() async {
       querySnapshot.docs.forEach((doc) async {
         String time = DateFormat('MM-dd-yyyy hh:mm')
             .format(DateFormat('MM-dd-yyyy hh:mm').parse(doc['time']));
-        DateTime date = DateTime.parse(time);
+        DateTime date = DateFormat('MM-dd-yyyy hh:mm').parse(time);
         if (date < DateTime.now()) {
           await UserNotification.createNotification(
               doc['user_id'],
