@@ -49,7 +49,8 @@
 // }
 
 import 'dart:async';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -170,7 +171,24 @@ class _HomeState extends State<Home> {
                     menuList: [
                       PopupMenuItem(
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            final apiKey = 'BL5c01CPne';
+                            final city =
+                                'kuwait'; // Replace with the city you want to get the weather for
+                            final url =
+                                'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey';
+                            final response = await http.get(Uri.parse(url));
+                            if (response.statusCode == 200) {
+                              final data = json.decode(response.body);
+                              final temperature = data['main']['temp'];
+                              final description =
+                                  data['weather'][0]['description'];
+                              print('Temperature: $temperature');
+                              print('Description: $description');
+                            } else {
+                              print(
+                                  'Request failed with status: ${response.statusCode}.');
+                            }
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
