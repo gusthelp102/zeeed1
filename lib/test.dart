@@ -621,7 +621,7 @@ class _GridBState extends State<GridB> {
                                                               : Colors.yellow),
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 15)));
+                                                      fontSize: 12)));
                                         }),
                                     // child: Text(
                                     //   "Ends at ${data['time']}",

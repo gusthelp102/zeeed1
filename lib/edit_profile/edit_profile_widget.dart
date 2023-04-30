@@ -32,7 +32,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         TextEditingController(text: currentUserDisplayName);
     _model.phoneEditController ??=
         TextEditingController(text: currentPhoneNumber);
-    _model.uidEditController ??= TextEditingController(text: currentUserUid);
+    _model.uidEditController ??= TextEditingController(text: currentUserEmail);
   }
 
   @override
@@ -62,8 +62,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: ListView(
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
@@ -214,7 +213,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
-                    hintText: currentUserUid,
+                    hintText: currentUserEmail,
                     hintStyle: FlutterFlowTheme.of(context).bodyText2.override(
                           fontFamily: 'Poppins',
                           color: FlutterFlowTheme.of(context).gray600,
