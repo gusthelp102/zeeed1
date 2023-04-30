@@ -14,13 +14,17 @@ import 'profile_model.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({Key? key}) : super(key: key);
+  ProfileWidget({Key? key, required this.quote}) : super(key: key);
+
+  String quote;
 
   @override
-  _ProfileWidgetState createState() => _ProfileWidgetState();
+  _ProfileWidgetState createState() => _ProfileWidgetState(quote: quote);
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
+  _ProfileWidgetState({required this.quote});
+  String quote;
   late ProfileModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -351,6 +355,21 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Container(height: 20),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Quote of the day',
+                    style: TextStyle(fontSize: 25, color: Colors.green),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    quote,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
               ],

@@ -123,7 +123,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'profile',
               path: 'profile',
-              builder: (context, params) => ProfileWidget(),
+              builder: (context, params) => ProfileWidget(quote: ''),
             ),
             FFRoute(
               name: 'EditProfile',

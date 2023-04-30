@@ -172,27 +172,20 @@ class _HomeState extends State<Home> {
                       PopupMenuItem(
                         child: GestureDetector(
                           onTap: () async {
-                            final apiKey = 'BL5c01CPne';
-                            final city =
-                                'kuwait'; // Replace with the city you want to get the weather for
-                            final url =
-                                'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey';
-                            final response = await http.get(Uri.parse(url));
-                            if (response.statusCode == 200) {
-                              final data = json.decode(response.body);
-                              final temperature = data['main']['temp'];
-                              final description =
-                                  data['weather'][0]['description'];
-                              print('Temperature: $temperature');
-                              print('Description: $description');
-                            } else {
-                              print(
-                                  'Request failed with status: ${response.statusCode}.');
-                            }
+                            String url = 'https://api.quotable.io/random';
+
+                            var response = await http.get(Uri.parse(url));
+
+                            var decodedResponse = jsonDecode(response.body);
+
+                            print(decodedResponse['content']);
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ProfileWidget()));
+                                    builder: (context) => ProfileWidget(
+                                          quote: decodedResponse['content'],
+                                        )));
                           },
                           child: ListTile(
                             leading: Icon(
