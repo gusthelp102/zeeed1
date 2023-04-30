@@ -179,8 +179,6 @@ class _HomeState extends State<Home> {
 
                             var decodedResponse = jsonDecode(response.body);
 
-                            print(decodedResponse['content']);
-
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -587,80 +585,28 @@ class _GridBState extends State<GridB> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.all(1.0),
-                                    child: TweenAnimationBuilder<Duration>(
-                                        duration: Duration(
-                                            minutes:
-                                                DateFormat('MM-dd-yyyy hh:mm')
-                                                    .parse(data['time'])
-                                                    .difference(DateTime.now())
-                                                    .inMinutes),
-                                        tween: Tween(
-                                            begin: Duration(
-                                                minutes: DateFormat(
-                                                        'MM-dd-yyyy hh:mm')
-                                                    .parse(data['time'])
-                                                    .difference(DateTime.now())
-                                                    .inMinutes),
-                                            end: Duration.zero),
-                                        onEnd: () async {
-                                          QuerySnapshot querySnapshot =
-                                              await FirebaseFirestore.instance
-                                                  .collection('Merch')
-                                                  .where('time',
-                                                      isLessThan: DateFormat(
-                                                              'MM-dd-yyyy hh:mm')
-                                                          .format(
-                                                              DateTime.now())
-                                                          .toString())
-                                                  .get();
-                                          if (querySnapshot.size > 0) {
-                                            querySnapshot.docs
-                                                .forEach((doc) async {
-                                              await UserNotification
-                                                  .createNotification(
-                                                      doc['user_id'],
-                                                      'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
-                                                      doc['price']);
-                                              await FirebaseFirestore.instance
-                                                  .collection('Merch')
-                                                  .doc(doc.id)
-                                                  .delete();
-                                            });
-                                          }
-                                        },
-                                        builder: (BuildContext context,
-                                            Duration value, Widget? child) {
-                                          final hours = value.inHours;
-                                          final minutes = value.inMinutes -
-                                              (hours * 60) +
-                                              1;
-                                          return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 5),
-                                              child: Text(
-                                                  '$hours hours $minutes minutes left',
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      color: time
-                                                                  .difference(
-                                                                      DateTime
-                                                                          .now())
-                                                                  .inHours <
-                                                              3
-                                                          ? Colors.red
-                                                          : (time
-                                                                      .difference(
-                                                                          DateTime
-                                                                              .now())
-                                                                      .inDays >
-                                                                  1
-                                                              ? Colors.green
-                                                              : Colors.yellow),
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12)));
-                                        }),
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5),
+                                        child: Text('End at ${data['time']}',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: time
+                                                            .difference(
+                                                                DateTime.now())
+                                                            .inHours <
+                                                        3
+                                                    ? Colors.red
+                                                    : (time
+                                                                .difference(
+                                                                    DateTime
+                                                                        .now())
+                                                                .inDays >
+                                                            1
+                                                        ? Colors.green
+                                                        : Colors.yellow),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12))),
                                     // child: Text(
                                     //   "Ends at ${data['time']}",
                                     //   style: TextStyle(
