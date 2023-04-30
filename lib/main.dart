@@ -25,6 +25,31 @@ void main() async {
   await FlutterFlowTheme.initialize();
 
   runApp(test());
+
+  var cron = new Cron();
+  cron.schedule(new Schedule.parse('*/1 * * * *'), () async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('Merch').get();
+    if (querySnapshot.size > 0) {
+      querySnapshot.docs.forEach((doc) async {
+        String time =
+            DateFormat('MM-dd-yyyy hh:mm').format(DateTime.parse(doc['time']));
+        DateTime date = DateTime.parse(time);
+        if (date < DateTime.now()) {
+          await UserNotification.createNotification(
+              doc['user_id'],
+              'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
+              doc['price']);
+          await FirebaseFirestore.instance
+              .collection('Merch')
+              .doc(doc.id)
+              .delete();
+          print('deleted');
+        }
+      });
+    }
+    print('cron run');
+  });
 }
 
 class test extends StatelessWidget {
