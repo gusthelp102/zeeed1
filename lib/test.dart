@@ -58,6 +58,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:zeeed2/about_us.dart';
+import 'package:zeeed2/backend/schema/notification.dart';
 import 'package:zeeed2/bidding_page/bidding_page_widget.dart';
 import 'package:zeeed2/countdown_timer.dart';
 import 'package:zeeed2/create_auction/create_auction_widget.dart';
@@ -601,6 +602,32 @@ class _GridBState extends State<GridB> {
                                                     .difference(DateTime.now())
                                                     .inMinutes),
                                             end: Duration.zero),
+                                        onEnd: () async {
+                                          QuerySnapshot querySnapshot =
+                                              await FirebaseFirestore.instance
+                                                  .collection('Merch')
+                                                  .where('time',
+                                                      isLessThan: DateFormat(
+                                                              'MM-dd-yyyy hh:mm')
+                                                          .format(
+                                                              DateTime.now())
+                                                          .toString())
+                                                  .get();
+                                          if (querySnapshot.size > 0) {
+                                            querySnapshot.docs
+                                                .forEach((doc) async {
+                                              await UserNotification
+                                                  .createNotification(
+                                                      doc['user_id'],
+                                                      'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
+                                                      doc['price']);
+                                              await FirebaseFirestore.instance
+                                                  .collection('Merch')
+                                                  .doc(doc.id)
+                                                  .delete();
+                                            });
+                                          }
+                                        },
                                         builder: (BuildContext context,
                                             Duration value, Widget? child) {
                                           final hours = value.inHours;
