@@ -35,7 +35,7 @@ void main() async {
         String time = DateFormat('MM-dd-yyyy hh:mm')
             .format(DateFormat('MM-dd-yyyy hh:mm').parse(doc['time']));
         DateTime date = DateFormat('MM-dd-yyyy hh:mm').parse(time);
-        if (date < DateTime.now()) {
+        if (date > DateTime.now()) {
           await UserNotification.createNotification(
               doc['user_id'],
               'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
