@@ -35,7 +35,7 @@ void main() async {
         String time = DateFormat('MM-dd-yyyy HH:mm')
             .format(DateFormat('MM-dd-yyyy HH:mm').parse(doc['time']));
         DateTime date = DateFormat('MM-dd-yyyy HH:mm').parse(time);
-        if (date > DateTime.now()) {
+        if (date < DateTime.now()) {
           await UserNotification.createNotification(
               doc['user_id'],
               'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
@@ -58,6 +58,7 @@ class test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyApp(),
     );
   }
@@ -116,6 +117,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Zeeed2',
       localizationsDelegates: [
         FFLocalizationsDelegate(),

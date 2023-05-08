@@ -127,6 +127,14 @@ class _HomeState extends State<Home> {
 
   bool showBtmAppBr = true;
 
+  List<String> images = [
+    'assets/images/car.jpeg',
+    'assets/images/watch.jpeg',
+    'assets/images/msbah.jpeg',
+    'assets/images/tire.jpeg',
+    'assets/images/zeeed_logo.jpeg'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -299,6 +307,7 @@ class _HomeState extends State<Home> {
                           },
                           child: ListTile(
                             onTap: () {
+                              Navigator.of(context).popUntil((route) => route.isFirst);
                               auth.signOut();
                             },
                             leading: Icon(
@@ -334,14 +343,6 @@ class _HomeState extends State<Home> {
                         return child!;
                       },
                       child: GestureDetector(
-                        onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content:
-                                  Text("Hello you tapped at ${index + 1} "),
-                            ),
-                          );
-                        },
                         onPanDown: (d) {
                           carasouelTmer?.cancel();
                           carasouelTmer = null;
@@ -350,7 +351,7 @@ class _HomeState extends State<Home> {
                           carasouelTmer = getTimer();
                         },
                         child: Container(
-                          child: Image.asset("assets/images/adhere.jpg"),
+                          child: Image.asset(images[index]),
                           margin: const EdgeInsets.only(
                               right: 5, left: 5, top: 24, bottom: 12),
                           decoration: BoxDecoration(
@@ -584,102 +585,105 @@ class _GridBState extends State<GridB> {
                                     height: 8.0,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(1.0),
-                                    child: Padding(
+                                      padding: EdgeInsets.all(1.0),
+                                      child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 5),
-                                       child: TweenAnimationBuilder<Duration>(
-                                         duration: Duration(
-                                             minutes:
-                                                 DateFormat('MM-dd-yyyy HH:mm')
-                                                     .parse(data['time'])
-                                                     .difference(DateTime.now())
-                                                     .inMinutes),
-                                         tween: Tween(
-                                             begin: Duration(
-                                                 minutes: DateFormat(
-                                                         'MM-dd-yyyy HH:mm')
-                                                     .parse(data['time'])
-                                                     .difference(DateTime.now())
-                                                     .inMinutes),
-                                             end: Duration.zero),
-                                         onEnd: () async {
-                                           QuerySnapshot querySnapshot =
-                                               await FirebaseFirestore.instance
-                                                   .collection('Merch')
-                                                   .where('time',
-                                                       isLessThan: DateFormat(
-                                                               'MM-dd-yyyy HH:mm')
-                                                           .format(
-                                                               DateTime.now())
-                                                           .toString())
-                                                   .get();
-                                           if (querySnapshot.size > 0) {
-                                             querySnapshot.docs
-                                                 .forEach((doc) async {
-                                               await UserNotification
-                                                   .createNotification(
-                                                       doc['user_id'],
-                                                       'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
-                                                       doc['price']);
-                                               await FirebaseFirestore.instance
-                                                   .collection('Merch')
-                                                   .doc(doc.id)
-                                                   .delete();
-                                             });
-                                           }
-                                         },
-                                         builder: (BuildContext context,
-                                             Duration value, Widget? child) {
-                                           final hours = value.inHours;
-                                           final minutes = value.inMinutes -
-                                               (hours * 60);
-                                            final seconds = value.inSeconds;
-                                           return Padding(
-                                               padding:
-                                                   const EdgeInsets.symmetric(
-                                                       vertical: 5),
-                                               child: Text(
-                                                   hours == 0 && minutes == 0 ? '$seconds seconds left' : '$hours hours $minutes minutes left',
-                                                   textAlign: TextAlign.center,
-                                                   style: TextStyle(
-                                                       color: time
-                                                                   .difference(
-                                                                       DateTime
-                                                                           .now())
-                                                                   .inHours <
-                                                               3
-                                                           ? Colors.red
-                                                           : (time
-                                                                       .difference(
-                                                                           DateTime
-                                                                               .now())
-                                                                       .inDays >
-                                                                   1
-                                                               ? Colors.green
-                                                               : Colors.yellow),
-                                                       fontWeight:
-                                                           FontWeight.bold,
-                                                       fontSize: 12)));
-                                         }),)
-                                    // child: Text(
-                                    //   "Ends at ${data['time']}",
-                                    //   style: TextStyle(
-                                    //     color: time
-                                    //                 .difference(DateTime.now())
-                                    //                 .inHours <
-                                    //             3
-                                    //         ? Colors.red
-                                    //         : (time
-                                    //                     .difference(
-                                    //                         DateTime.now())
-                                    //                     .inDays >
-                                    //                 1
-                                    //             ? Colors.green
-                                    //             : Colors.yellow),
-                                    //   ),
-                                    // ),
-                                  )
+                                        child: TweenAnimationBuilder<Duration>(
+                                            duration: Duration(
+                                                minutes: DateFormat(
+                                                        'MM-dd-yyyy HH:mm')
+                                                    .parse(data['time'])
+                                                    .difference(DateTime.now())
+                                                    .inMinutes),
+                                            tween: Tween(
+                                                begin: Duration(
+                                                    minutes: DateFormat(
+                                                            'MM-dd-yyyy HH:mm')
+                                                        .parse(data['time'])
+                                                        .difference(
+                                                            DateTime.now())
+                                                        .inMinutes),
+                                                end: Duration.zero),
+                                            onEnd: () async {
+                                              QuerySnapshot querySnapshot =
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('Merch')
+                                                      .where('time',
+                                                          isLessThan: DateFormat(
+                                                                  'MM-dd-yyyy HH:mm')
+                                                              .format(DateTime
+                                                                  .now())
+                                                              .toString())
+                                                      .get();
+                                              if (querySnapshot.size > 0) {
+                                                querySnapshot.docs
+                                                    .forEach((doc) async {
+                                                  await UserNotification
+                                                      .createNotification(
+                                                          doc['user_id'],
+                                                          'Auction ${doc['name']} ended! highest bidding price is ${doc['price']}',
+                                                          doc['price']);
+                                                  await FirebaseFirestore
+                                                      .instance
+                                                      .collection('Merch')
+                                                      .doc(doc.id)
+                                                      .delete();
+                                                });
+                                              }
+                                            },
+                                            builder: (BuildContext context,
+                                                Duration value, Widget? child) {
+                                              final hours = value.inHours;
+                                              final minutes = value.inMinutes -
+                                                  (hours * 60);
+                                              final seconds = value.inSeconds;
+                                              return Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                          vertical: 5),
+                                                  child: Text(
+                                                      hours == 0 && minutes == 0
+                                                          ? '$seconds seconds left'
+                                                          : '$hours hours $minutes minutes left',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color: time
+                                                                      .difference(
+                                                                          DateTime
+                                                                              .now())
+                                                                      .inHours <
+                                                                  3
+                                                              ? Colors.red
+                                                              : (time.difference(DateTime.now()).inDays > 1
+                                                                  ? Colors.green
+                                                                  : Colors
+                                                                      .yellow),
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 12)));
+                                            }),
+                                      )
+                                      // child: Text(
+                                      //   "Ends at ${data['time']}",
+                                      //   style: TextStyle(
+                                      //     color: time
+                                      //                 .difference(DateTime.now())
+                                      //                 .inHours <
+                                      //             3
+                                      //         ? Colors.red
+                                      //         : (time
+                                      //                     .difference(
+                                      //                         DateTime.now())
+                                      //                     .inDays >
+                                      //                 1
+                                      //             ? Colors.green
+                                      //             : Colors.yellow),
+                                      //   ),
+                                      // ),
+                                      )
                                 ],
                               ),
                             ),

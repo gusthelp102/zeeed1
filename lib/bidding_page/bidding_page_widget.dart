@@ -321,11 +321,6 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                      "${biddingPageMerchRecordList.where((element) => element.photo == photo).first.user_id}"),
-                                ),
                               ],
                             );
                           },
