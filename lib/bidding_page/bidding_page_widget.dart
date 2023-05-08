@@ -264,7 +264,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                 .first
                                 .time;
                             DateTime time =
-                                DateFormat('MM-dd-yyyy hh:mm').parse(d!);
+                                DateFormat('MM-dd-yyyy HH:mm').parse(d!);
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,

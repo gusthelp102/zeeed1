@@ -32,9 +32,9 @@ void main() async {
         await FirebaseFirestore.instance.collection('Merch').get();
     if (querySnapshot.size > 0) {
       querySnapshot.docs.forEach((doc) async {
-        String time = DateFormat('MM-dd-yyyy hh:mm')
-            .format(DateFormat('MM-dd-yyyy hh:mm').parse(doc['time']));
-        DateTime date = DateFormat('MM-dd-yyyy hh:mm').parse(time);
+        String time = DateFormat('MM-dd-yyyy HH:mm')
+            .format(DateFormat('MM-dd-yyyy HH:mm').parse(doc['time']));
+        DateTime date = DateFormat('MM-dd-yyyy HH:mm').parse(time);
         if (date > DateTime.now()) {
           await UserNotification.createNotification(
               doc['user_id'],
