@@ -171,7 +171,7 @@ class _HomeState extends State<Home> {
                       '$currentUserDisplayName',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
-                            color: Color(0xFF1E5D13),
+                            color: Colors.white,
                             fontSize: 22.0,
                           ),
                     ),
@@ -214,7 +214,7 @@ class _HomeState extends State<Home> {
                       PopupMenuItem(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            primary: Color(0xFF124C08),
                           ),
                           onPressed: () {
                             showDialog(
@@ -262,7 +262,7 @@ class _HomeState extends State<Home> {
                       PopupMenuItem(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            primary: Color(0xFF124C08),
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -307,7 +307,8 @@ class _HomeState extends State<Home> {
                           },
                           child: ListTile(
                             onTap: () {
-                              Navigator.of(context).popUntil((route) => route.isFirst);
+                              Navigator.of(context)
+                                  .popUntil((route) => route.isFirst);
                               auth.signOut();
                             },
                             leading: Icon(
@@ -362,7 +363,7 @@ class _HomeState extends State<Home> {
                       ),
                     );
                   },
-                  itemCount: 5,
+                  itemCount: images.length,
                 ),
               ),
               const SizedBox(
@@ -635,20 +636,22 @@ class _GridBState extends State<GridB> {
                                             },
                                             builder: (BuildContext context,
                                                 Duration value, Widget? child) {
+                                              final days = value.inDays;
                                               final hours = value.inHours;
                                               final minutes = value.inMinutes -
                                                   (hours * 60);
                                               final seconds = value.inSeconds;
                                               return Padding(
-                                                  padding:
-                                                      const EdgeInsets.symmetric(
-                                                          vertical: 5),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 5),
                                                   child: Text(
                                                       hours == 0 && minutes == 0
                                                           ? '$seconds seconds left'
-                                                          : '$hours hours $minutes minutes left',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                          : (hours > 24)
+                                                              ? '$days days left'
+                                                              : '$hours hours $minutes minutes left',
+                                                      textAlign: TextAlign
+                                                          .center,
                                                       style: TextStyle(
                                                           color: time
                                                                       .difference(
@@ -657,8 +660,12 @@ class _GridBState extends State<GridB> {
                                                                       .inHours <
                                                                   3
                                                               ? Colors.red
-                                                              : (time.difference(DateTime.now()).inDays > 1
-                                                                  ? Colors.green
+                                                              : (time
+                                                                          .difference(DateTime
+                                                                              .now())
+                                                                          .inDays >
+                                                                      1
+                                                                  ? Color(0xFF124C08)
                                                                   : Colors
                                                                       .yellow),
                                                           fontWeight:
@@ -679,7 +686,7 @@ class _GridBState extends State<GridB> {
                                       //                         DateTime.now())
                                       //                     .inDays >
                                       //                 1
-                                      //             ? Colors.green
+                                      //             ? Color(0xFF124C08)
                                       //             : Colors.yellow),
                                       //   ),
                                       // ),

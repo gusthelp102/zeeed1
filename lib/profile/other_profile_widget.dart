@@ -23,7 +23,7 @@ class _OtherProfileWidgetState extends State<OtherProfileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF9DB9CB),
+        backgroundColor: Color(0xFF124C08),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,

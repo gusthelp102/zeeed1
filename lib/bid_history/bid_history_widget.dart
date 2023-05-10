@@ -43,7 +43,7 @@ class _BidHistoryWidgetState extends State<BidHistoryWidget>
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
-        backgroundColor: Color(0xFF459B38),
+        backgroundColor: Color(0xFF124C08),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,

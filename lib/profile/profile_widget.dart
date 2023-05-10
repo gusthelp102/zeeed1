@@ -49,7 +49,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       backgroundColor: Color(0xFF1E2429),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(0xFF22A556),
+        backgroundColor: Color(0xFF124C08),
         title: Text(
           'My Account',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -93,7 +93,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       .title1
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF22A556),
+                                        color: Color(0xFF124C08),
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -122,7 +122,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Lexend Deca',
-                                          color: Color(0xFFEE8B60),
+                                          color: Color(0xFF124C08),
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.normal,
                                         ),
@@ -362,7 +362,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     'Quote of the day',
-                    style: TextStyle(fontSize: 25, color: Colors.green),
+                    style: TextStyle(fontSize: 25, color: Color(0xFF124C08)),
                   ),
                 ),
                 Padding(

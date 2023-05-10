@@ -315,7 +315,7 @@ class _BiddingPageWidgetState extends State<BiddingPageWidget> {
                                                             DateTime.now())
                                                         .inDays >
                                                     1
-                                                ? Colors.green
+                                                ? Color(0xFF124C08)
                                                 : Colors.yellow),
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,

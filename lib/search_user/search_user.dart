@@ -18,7 +18,7 @@ class _Search_userState extends State<Search_user> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Color(0xFF9DB9CB),
+            backgroundColor: Color(0xFF124C08),
             title: Card(
               child: TextField(
                 decoration: InputDecoration(

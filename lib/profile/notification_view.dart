@@ -18,7 +18,7 @@ class _NotificationViewState extends State<NotificationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF1E5D13),
+        backgroundColor: Color(0xFF124C08),
         title: Text(
           'Notifications',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -66,7 +66,7 @@ class _NotificationViewState extends State<NotificationView> {
                                 children: [
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary: Colors.green,
+                                        primary: Color(0xFF124C08),
                                       ),
                                       onPressed: () async {
                                         await UserNotification
